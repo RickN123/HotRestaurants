@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars - Express</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  
+</head>
+
+<body>
+
+    <div class="container">
+      
+        <div class="jumbotron">
+            <h1 class="text-center"><span class="fa fa-fire"></span> Hot Restaurant</h1>
+            <hr>
+            <h2 class="text-center">Make your reservation!</h2>
+            <br>
+            
+            <div class="text-center">
+                <a href="/tables"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> View Tables</button></a>
+                <a href="/"><button class="btn btn-lg btn-light"><span class="fa fa-home"></span></button></a>
+            </div>
+            
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <strong>New Reservation</strong></h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name"><strong>Name</strong></label>
+                        <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone"><strong>Phone number</strong></label>
+                        <input type="number" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><strong>e-mail address</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="uniqu-id"><strong>Unique ID</strong></label>
+                        <input type="text" class="form-control" id="unique-id" aria-describedby="iDHelp" placeholder="Enter unique ID">
+                    </div>
+
+                        <button type="submit" id="add-btn" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
+                </p></div>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript">
+
+        $("#add-btn").on("click", function(event) {
+            event.preventDefault();
+
+            var newParty = {
+                name: $("#name").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#email").val().trim(),
+                uniqueId: $("#unique-id").val().trim()
+            };
+
+            $.post("/api/reservations", newParty)
+            .then(function(data) {
+
+                if (reservations.length < 6){
+                console.log("add reservation", data);
+                alert("Adding your reservation...");
+
+                }
+
+                else {
+                console.log("add waitlist party", data);
+                alert("All booked up, adding you to our waitlist...");
+                }
+            });
+        }
+
+        
+
+    </script>
+
+</body>
+
+</html>
