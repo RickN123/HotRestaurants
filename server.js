@@ -19,14 +19,16 @@ app.get("/", function (req, res) {
 });
 
 app.get("/table", function (req, res) {
-    res.send("Hey, welcome to the table page!");
-    // res.sendFile(path.join(__dirname, "table.html"));
+    // res.send("Hey, welcome to the table page!");
+    res.sendFile(path.join(__dirname, "table.html"));
 });
 
 app.get("/reservation", function (req, res) {
-    res.send("Hey, welcome to the reservation page!");
-    // res.sendFile(path.join(__dirname, "reservation.html"));
+    // res.send("Hey, welcome to the reservation page!");
+    res.sendFile(path.join(__dirname, "reservation.html"));
 });
+
+require("./apitable")(app);
 
 
 
