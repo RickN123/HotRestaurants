@@ -63,15 +63,39 @@
 
     </div>
 
-    <!-- This is to display reservation -->
+
     <script type="text/javascript">
     
-          $.get("/api/characters/", function(data) {
-            console.log(data);
-            if (data) {
-// This would be inserted from Matt's reservation code
+        $.get("/api/reservations", function(data) {
+            for (var i = 0; i < data.length; i++) {
+            console.log(data[i]);
+
+            var listGroupItem = $("<li class='list-group-item'>");
+
+            listGroupItem.append($("<h2>").text("Name: " + data[i].name));
+            listGroupItem.append($("<h3>").text("Role: " + data[i].role));
+            listGroupItem.append($("<h3>").text("Age: " + data[i].age));
+            listGroupItem.append($("<h3>").text("Force Points: " + data[i].forcePoints));
+
+            $("#character-section").append(listGroupItem);
             }
-            });
+        });
+
+        $.get("/api/waitlist", function(data) {
+            for (var i = 0; i < data.length; i++) {
+            console.log(data[i]);
+            
+            var listGroupItem = $("<li class='list-group-item'>");
+
+            listGroupItem.append($("<h2>").text("Name: " + data[i].name));
+            listGroupItem.append($("<h3>").text("Role: " + data[i].role));
+            listGroupItem.append($("<h3>").text("Age: " + data[i].age));
+            listGroupItem.append($("<h3>").text("Force Points: " + data[i].forcePoints));
+
+            $("#character-section").append(listGroupItem);
+            }
+        });
+
      
       </script>
 

@@ -5,12 +5,11 @@
   <meta charset="UTF-8">
   <title>Star Wars - Express</title>
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  
 </head>
 
 <body>
@@ -25,7 +24,7 @@
             
             <div class="text-center">
                 <a href="/tables"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> View Tables</button></a>
-                <a href="/reserve"><button type="button" class="btn btn-default btn-lg"><i class="fas fa-home"></i></button></a>
+                <a href="/"><button class="btn btn-lg btn-default"><span class="fa fa-home"></span></button></a>
             </div>
             
         </div>
@@ -70,16 +69,17 @@
 
         $("#add-btn").on("click", function(event) {
             event.preventDefault();
-            var newCharacter = {
-            name: $("#name").val().trim(),
-            phone: $("#phone").val().trim(),
-            email: $("#email").val().trim(),
-            uniqueId: $("#unique-id").val().trim()
+
+            var newParty = {
+                name: $("#name").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#email").val().trim(),
+                uniqueId: $("#unique-id").val().trim()
             };
 
             if (reservations.length < 6){
 
-                $.post("/api/reservations", newReservation)
+                $.post("/api/reservations", newParty)
                 .then(function(data) {
                     console.log("add reservation", data);
                     alert("Adding your reservation...");
@@ -88,7 +88,7 @@
 
             else 
 
-            $.post("/api/reservations", newWaitingParty)
+            $.post("/api/waitList", newParty)
                 .then(function(data) {
                     console.log("add waitlist party", data);
                     alert("All booked up, adding you to our waitlist...");
