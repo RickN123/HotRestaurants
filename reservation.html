@@ -77,23 +77,23 @@
                 uniqueId: $("#unique-id").val().trim()
             };
 
-            if (reservations.length < 6){
+            $.post("/api/reservations", newParty)
+            .then(function(data) {
 
-                $.post("/api/reservations", newParty)
-                .then(function(data) {
-                    console.log("add reservation", data);
-                    alert("Adding your reservation...");
-                });
-            }
+                if (reservations.length < 6){
+                console.log("add reservation", data);
+                alert("Adding your reservation...");
 
-            else 
+                }
 
-            $.post("/api/waitList", newParty)
-                .then(function(data) {
-                    console.log("add waitlist party", data);
-                    alert("All booked up, adding you to our waitlist...");
-                });
-        });
+                else {
+                console.log("add waitlist party", data);
+                alert("All booked up, adding you to our waitlist...");
+                }
+            });
+        }
+
+        
 
     </script>
 
